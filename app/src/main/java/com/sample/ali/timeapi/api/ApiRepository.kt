@@ -15,11 +15,14 @@ class ApiRepository private constructor() {
                 return apiRepository!!
             }
     }
-    fun getTimeByTimeZone(timeZone: String) {
+    fun getTimeByTimeZone(timeZone: String, apiRespond: ApiRespond) {
         RetrofitService.apiService.getTimeByTimeZone(timeZone = timeZone).enqueue(
             object : Callback<MainModel> {
                 override fun onResponse(call: Call<MainModel>, response: Response<MainModel>) {
-                    TODO("Not yet implemented")
+                    if (response.code() == 200)
+                        apiRespond.onRespond(response.body() as MainModel)
+                    else
+                        apiRespond.onRespondFailure(response.raw().toString())
                 }
 
                 override fun onFailure(call: Call<MainModel>, t: Throwable) {
