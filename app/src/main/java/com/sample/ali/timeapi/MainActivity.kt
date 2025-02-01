@@ -1,6 +1,7 @@
 package com.sample.ali.timeapi
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.sample.ali.timeapi.api.ApiRepository
 import com.sample.ali.timeapi.api.ApiRespond
@@ -20,13 +21,15 @@ class MainActivity : AppCompatActivity() {
                     append(':')
                     append(respond.seconds)
                 }
+                binding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onRespondFailure(error: String) {
                 binding.txtTime.text = error
+                binding.progressBar.visibility = View.INVISIBLE
             }
         }
-        val selectedTimeZone = "Asia/Istanbul"
+        val selectedTimeZone = "Asia/Singapore"
         ApiRepository.instance.getTimeByTimeZone(selectedTimeZone, getTimeByTimeZoneRespond)
     }
 }
