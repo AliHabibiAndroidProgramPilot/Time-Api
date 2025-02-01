@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Time Api</string>
+    <string name="singapore">Asia/Singapore</string>
 </resources>
