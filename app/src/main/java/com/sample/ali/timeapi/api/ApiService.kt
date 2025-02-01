@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("zone")
-    fun getTimeByTimeZone(@Query("timeZone") timeZone: String): Call<String>
+    fun getTimeByTimeZone(@Query("timeZone") timeZone: String): Call<MainModel>
 }
